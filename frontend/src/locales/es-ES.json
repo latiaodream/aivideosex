@@ -1,0 +1,59 @@
+{
+  "app": {
+    "title": "Búsqueda de Video AI"
+  },
+  "admin": {
+    "title": "Panel de Administración"
+  },
+  "common": {
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "reset": "Restablecer",
+    "loading": "Cargando...",
+    "success": "Éxito",
+    "error": "Error",
+    "warning": "Advertencia",
+    "info": "Información",
+    "yes": "Sí",
+    "no": "No",
+    "enable": "Habilitar",
+    "disable": "Deshabilitar",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "status": "Estado",
+    "actions": "Acciones",
+    "total": "Total",
+    "page": "Página",
+    "pageSize": "Tamaño de página",
+    "refresh": "Actualizar"
+  },
+  "menu": {
+    "settings": "Ajustes",
+    "nav": "Navegación",
+    "dashboard": "Panel",
+    "members": "Miembros",
+    "plans": "Planes", 
+    "orders": "Pedidos",
+    "reviews": "Reseñas",
+    "home": "Inicio"
+  },
+  "errors": {
+    "unauthorized": "Sesión expirada, inicie sesión de nuevo",
+    "server": "Error del servidor, inténtelo más tarde",
+    "requestFailed": "Solicitud fallida"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "adminToken": "Token de administrador",
+    "tokenRequired": "Ingrese el token de administrador",
+    "tokenInvalid": "Token inválido",
+    "loginSuccess": "Inicio de sesión exitoso",
+    "loginFailed": "Error al iniciar sesión"
+  }
+}

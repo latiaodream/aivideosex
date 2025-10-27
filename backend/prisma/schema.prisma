@@ -1,0 +1,159 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  account          String    @unique              // 自动生成 u_xxx_YYMMDD[-n]
+  ipHash           String?                        // 基于 IP+盐 摘要的前 10 位
+  phone            String?   @unique
+  email            String?   @unique
+  countryCode      String?                        // US/CN/MX...
+  registerIp       String?
+  registerDevice   String?                        // iOS/Android/Web/Unknown
+  registeredAt     DateTime  @default(now())
+  lastLoginAt      DateTime?
+  lastLoginIp      String?
+  tags             String?                        // JSON string: ["VIP","risk"]
+  status           String    @default("active")   // active/banned
+  creditBalance    Int       @default(0)          // 点数
+  totalSpentUSDT   Decimal   @default(0)
+
+  Orders           Order[]
+
+  @@index([ipHash])
+  @@map("users")
+}
+
+model Plan {
+  id            Int      @id @default(autoincrement())
+  code          String   @unique                   // ADV/SUP/ULT/SUPR
+  name_zh       String
+  name_en       String
+  name_es       String?
+  priceUSDT     Decimal                            // 10/20/30/50
+  creditGrant   Int                                // 购买发放点数
+  sort          Int      @default(0)
+  isActive      Boolean  @default(true)
+
+  postpay_zh    String                           // 付费后提示语
+  postpay_en    String
+  postpay_es    String?
+  upsell_zh     String                           // 升级引导语
+  upsell_en     String
+  upsell_es     String?
+
+  // 支付后展示模板（JSON字符串），用于前端结果卡片
+  afterPay_zh   String?   // JSON: { title, subtitle, text, bullets[], image, video, link, cta{ text,url }, nextUpsell{ show } }
+  afterPay_en   String?
+  afterPay_es   String?
+
+  Orders        Order[]
+
+  @@map("plans")
+}
+
+model Order {
+  id             Int       @id @default(autoincrement())
+  orderNo        String    @unique
+  userId         Int
+  planId         Int
+  chain          String    // TRON/BSC/ETH
+  token          String    @default("USDT")
+  amountDue      Decimal                          // 应付（包含用于识别的两位小数，例如 10.37）
+  amountPaid     Decimal?                         // 实付
+  toAddress      String?   // 收款地址
+  fromAddress    String?
+  txHash         String?
+  confirmations  Int       @default(0)
+  status         String    @default("pending")
+  // pending -> seen -> confirmed -> credited | failed | expired
+  createdAt      DateTime  @default(now())
+  paidAt         DateTime?
+  expiresAt      DateTime?
+  amountFingerprint Int?                          // 金额指纹（1..99），用于识别不同订单
+
+  user           User      @relation(fields: [userId], references: [id])
+  plan           Plan      @relation(fields: [planId], references: [id])
+
+  @@map("orders")
+}
+
+model Review {
+  id            Int      @id @default(autoincrement())
+  displayName   String
+  avatarUrl     String?
+  stars         Int      // 1..5
+  content_zh    String
+  content_en    String
+  content_es    String?
+  imageUrl      String?
+  sourceType    String   // demo/beta/real
+  verified      Boolean  @default(false) // 已验证购买徽章
+  orderId       Int?
+  language      String   // zh-CN/en-US/...
+  status        String   @default("draft") // draft/published/unlisted
+  pinned        Boolean  @default(false)
+  sort          Int      @default(0)
+  startAt       DateTime?
+  endAt         DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@map("reviews")
+}
+
+model Banner {
+  id            Int      @id @default(autoincrement())
+  imageUrl      String
+  altText       String?
+  title_zh      String?
+  title_en      String?
+  desc_zh       String?
+  desc_en       String?
+  ctaText_zh    String?
+  ctaText_en    String?
+  ctaLink       String?
+  language      String    // zh-CN/en-US
+  region        String?   // US/MX/ID/...
+  weight        Int       @default(0)
+  sort          Int       @default(0)
+  status        String    @default("enabled") // enabled/disabled
+  startAt       DateTime?
+  endAt         DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@map("banners")
+}
+
+model TextBlock {
+  id         Int      @id @default(autoincrement())
+  key        String   @unique // hero/steps/faq-1...
+  title_zh   String?
+  title_en   String?
+  sub_zh     String?
+  sub_en     String?
+  bullets_zh String?  // JSON string: ["要点1","要点2"]
+  bullets_en String?
+  visible    Boolean  @default(true)
+  sort       Int      @default(0)
+
+  @@map("text_blocks")
+}
+
+model Setting {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}

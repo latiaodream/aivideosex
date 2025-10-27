@@ -1,0 +1,132 @@
+{
+  "errors": {
+    "network": "Conexión de red fallida, verifique la configuración",
+    "requestFailed": "Solicitud fallida"
+  },
+  "common": {
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "search": "Buscar",
+    "loading": "Cargando...",
+    "retry": "Reintentar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "finish": "Finalizar",
+    "submit": "Enviar",
+    "close": "Cerrar",
+    "copy": "Copiar",
+    "share": "Compartir"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "search": "Buscar",
+    "profile": "Perfil",
+    "plans": "Planes",
+    "history": "Historial"
+  },
+  "home": {
+    "title": "Búsqueda de Video para Adultos con IA",
+    "subtitle": "Plataforma Inteligente de Descubrimiento de Contenido de Video",
+    "searchPlaceholder": "Sube una imagen o introduce palabras clave para buscar...",
+    "uploadImage": "Subir Imagen",
+    "popularPlans": "Planes Populares",
+    "userReviews": "Reseñas de Usuarios",
+    "viewAllPlans": "Ver Todos los Planes",
+    "getStarted": "Comenzar",
+    "heroTitle": "El motor de búsqueda de video para adultos con IA más potente",
+    "heroSubtitle": "IA visual revolucionaria • Índice de 1B+ videos • Coincidencia en milisegundos",
+    "sectionTitle": "Prueba ahora la búsqueda de video para adultos con IA",
+    "sectionSubtitle": "Sube cualquier imagen y encontraremos los videos más similares",
+    "uploadTitle": "🔍 Búsqueda inteligente por imagen",
+    "uploadClickOrDrag": "Haz clic o arrastra para subir una imagen",
+    "uploadedImageAlt": "Imagen subida",
+    "reupload": "Subir de nuevo",
+    "statUsers": "Usuarios globales"
+  },
+  "languages": {
+    "zh-CN": "简体中文",
+    "en-US": "English",
+    "es-ES": "Español",
+    "ja-JP": "日本語",
+    "ko-KR": "한국어",
+    "pt-PT": "Português"
+  },
+  "overlay": {
+    "generalTitle": "La IA está realizando una búsqueda profunda…",
+    "adv": { "title": "Búsqueda del motor básico…" },
+    "sup": { "title": "Búsqueda multicanal avanzada…" },
+    "ult": { "title": "Reordenamiento inteligente definitivo…" },
+    "supr": { "title": "Búsqueda por vía rápida premium…" },
+    "steps": {
+      "parseImg": "Analizando imagen…",
+      "recallStd": "Recuperación estándar…",
+      "filterCoarse": "Filtrado preliminar…",
+      "genPreview": "Generando vista previa…",
+      "multichannel": "Recuperación multicanal…",
+      "multimodal": "Fusión multimodal…",
+      "boostRelevance": "Mejorando relevancia…",
+      "deepScan": "Escaneo profundo…",
+      "rerank": "Reordenamiento por modelos…",
+      "simFilter": "Filtrado por similitud…",
+      "qualityAssess": "Evaluación de calidad…",
+      "fastLane": "Acceso de vía rápida…",
+      "humanReview": "Revisión humana…",
+      "highConfBackcheck": "Verificación de alta confianza…",
+      "resultMerge": "Combinando resultados…",
+      "parseUpload": "Analizando subida…",
+      "extractSemantic": "Extrayendo semántica…",
+      "vectorRecall": "Recuperación vectorial (1B+ índice)…"
+    },
+    "eta": "Quedan {{seconds}}s aprox., no cierre la página"
+  },
+  "chains": {
+    "trc20": { "desc": "Baja comisión, recomendado" },
+    "bsc": { "desc": "Confirmación rápida" },
+    "erc20": { "desc": "Más seguro" }
+  },
+  "badge": {
+    "demo": "Demo",
+    "beta": "Beta",
+    "real": "Real",
+    "unknown": "Desconocido"
+  },
+  "reviews": {
+    "title": "Opiniones reales de usuarios",
+    "subtitle": "Mira lo que opinan otros usuarios",
+    "verified": "Verificado"
+  },
+  "toast": {
+    "serviceUnavailable": "Servicio no disponible, inténtelo más tarde",
+    "uploadFirst": "Primero suba una imagen",
+    "openingPayment": "Abriendo pago…",
+    "orderCreateFailed": "Error al crear la orden, reintente",
+    "initializing": "Inicializando, intente de nuevo más tarde",
+    "choosePlan": "Elija un plan para comenzar",
+    "chooseImage": "Elija un archivo de imagen",
+    "fileTooLarge": "El archivo debe ser menor de 10MB",
+    "uploadSuccess": "Imagen subida con éxito",
+    "imageReadFailed": "Error al leer la imagen, reintente",
+    "uploadFailed": "Error de subida, reintente",
+    "alreadyTopPlan": "Ya está en el plan superior",
+    "switchingNetwork": "Cambiando la red de pago...",
+    "switchFailed": "Error al cambiar, reintente",
+    "userLoading": "Cargando datos de usuario, reintente",
+    "nextPlanFailed": "Error al pasar al siguiente plan, reintente",
+    "orderExpired": "Orden expirada, cree una nueva",
+    "paymentNotDetected": "Pago no detectado, confirme la transferencia",
+    "checkPaymentFailed": "Error al comprobar el estado del pago",
+    "noResult": "Sin resultados. Pruebe con una imagen más clara o contacte soporte",
+    "searchFailed": "Búsqueda fallida, reintente o contacte soporte",
+    "processingPayment": "Procesando pago...",
+    "paymentFailed": "Pago fallido, reintente",
+    "imageDeleted": "Imagen eliminada",
+    "addressCopied": "Dirección copiada"
+  },
+  "common": {
+    "copyAddress": "Copiar dirección"
+  }
+}

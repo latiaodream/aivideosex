@@ -1,0 +1,53 @@
+{
+  "common": {
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "search": "Pesquisar",
+    "loading": "A carregar...",
+    "retry": "Tentar novamente",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "finish": "Finalizar",
+    "submit": "Enviar",
+    "close": "Fechar",
+    "copy": "Copiar",
+    "share": "Partilhar"
+  },
+  "navigation": {
+    "home": "Início",
+    "search": "Pesquisar",
+    "profile": "Perfil",
+    "plans": "Planos",
+    "history": "Histórico"
+  },
+  "home": {
+    "title": "Pesquisa de Vídeos Adultos com IA",
+    "subtitle": "Plataforma Inteligente de Descoberta de Conteúdo de Vídeo",
+    "searchPlaceholder": "Carregar imagem ou introduzir palavras-chave para pesquisar...",
+    "uploadImage": "Carregar Imagem",
+    "popularPlans": "Planos Populares",
+    "userReviews": "Avaliações de Utilizadores",
+    "viewAllPlans": "Ver Todos os Planos",
+    "getStarted": "Começar",
+    "heroTitle": "O buscador de vídeos adultos com IA mais poderoso",
+    "sectionTitle": "Experimente agora a pesquisa de vídeos adultos com IA",
+    "sectionSubtitle": "Envie qualquer imagem e encontraremos os vídeos mais semelhantes",
+    "uploadTitle": "🔍 Pesquisa inteligente por imagem",
+    "uploadClickOrDrag": "Clique ou arraste para enviar a imagem",
+    "uploadedImageAlt": "Imagem enviada",
+    "reupload": "Enviar novamente",
+    "statUsers": "Utilizadores globais"
+  },
+  "languages": {
+    "zh-CN": "简体中文",
+    "en-US": "English",
+    "es-ES": "Español",
+    "ja-JP": "日本語",
+    "ko-KR": "한국어",
+    "pt-PT": "Português"
+  }
+}

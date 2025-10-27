@@ -1,0 +1,46 @@
+{
+  "common": {
+    "confirm": "확인",
+    "cancel": "취소",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "편집",
+    "add": "추가",
+    "search": "검색",
+    "reset": "재설정",
+    "loading": "로딩중...",
+    "success": "성공",
+    "error": "오류",
+    "warning": "경고",
+    "info": "정보",
+    "yes": "예",
+    "no": "아니오",
+    "enable": "활성화",
+    "disable": "비활성화",
+    "active": "활성",
+    "inactive": "비활성",
+    "status": "상태",
+    "actions": "작업",
+    "total": "총합",
+    "page": "페이지",
+    "pageSize": "페이지 크기",
+    "refresh": "새로고침"
+  },
+  "menu": {
+    "dashboard": "대시보드",
+    "members": "회원",
+    "plans": "플랜", 
+    "orders": "주문",
+    "reviews": "리뷰",
+    "home": "홈"
+  },
+  "auth": {
+    "login": "로그인",
+    "logout": "로그아웃",
+    "adminToken": "관리자 토큰",
+    "tokenRequired": "관리자 토큰을 입력하세요",
+    "tokenInvalid": "유효하지 않은 토큰",
+    "loginSuccess": "로그인 성공",
+    "loginFailed": "로그인 실패"
+  }
+}

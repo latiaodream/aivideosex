@@ -1,0 +1,248 @@
+{
+  "errors": {
+    "network": "Network connection failed, please check your settings",
+    "requestFailed": "Request failed"
+  },
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "deleteImage": "Delete Image",
+    "edit": "Edit",
+    "search": "Search",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "finish": "Finish",
+    "submit": "Submit",
+    "close": "Close",
+    "copy": "Copy",
+    "share": "Share"
+  },
+  "search": {
+    "startButton": "🔍 Start AI Search"
+  },
+  "navigation": {
+    "home": "Home",
+    "search": "Search",
+    "profile": "Profile",
+    "plans": "Plans",
+    "history": "History"
+  },
+  "home": {
+    "title": "AI Adult Video Search",
+    "subtitle": "Intelligent Video Content Discovery Platform",
+    "searchPlaceholder": "Upload image or enter keywords to search...",
+    "uploadImage": "Upload Image",
+    "popularPlans": "Popular Plans",
+    "userReviews": "User Reviews",
+    "viewAllPlans": "View All Plans",
+    "getStarted": "Get Started",
+    "heroTitle": "The Most Powerful AI Adult Video Search Engine",
+    "heroSubtitle": "Revolutionary Visual AI • 1B+ Video Index • Millisecond Matching",
+    "sectionTitle": "Experience AI Adult Video Search Now",
+    "sectionSubtitle": "Upload any image and we will find the most similar videos",
+    "uploadTitle": "🔍 Intelligent Image Search",
+    "uploadClickOrDrag": "Click or drag to upload image",
+    "uploadedImageAlt": "Uploaded image",
+    "reupload": "Re-upload",
+    "statUsers": "Global Users",
+    "bannersLoading": "Loading banners...",
+    "uploadFlow": "🧠 Deep AI Analysis → 🔍 Precise Match → 🎯 Instant Result",
+    "sectionSubtitle1": "World-leading AI video recognition delivering unmatched search experience",
+    "featureDesc1": "AI models auto-improve daily, boosting accuracy and speed",
+    "sectionSubtitle2": "Trusted by 5M+ users, over 1B searches processed",
+    "stats": {
+      "usersNumber": "5M+",
+      "dailyNumber": "1M+",
+      "daily": "Daily volume"
+    }
+  },
+  "footer": {
+    "brandTitle": "🔍 AI Adult Video Search",
+    "stats": { "videosNumber": "1B+" }
+  },
+  "search": {
+    "title": "Video Search",
+    "searchHistory": "Search History",
+    "searchResults": "Search Results",
+    "noResults": "No related videos found",
+    "uploadHint": "Click to upload or drag image here",
+    "searchProgress": "Searching, please wait...",
+    "creditRequired": "Requires {count} credits",
+    "insufficientCredits": "Insufficient credits, please purchase a plan first",
+    "searchSuccess": "Search successful! Found {count} related videos",
+    "clearHistory": "Clear History"
+  },
+  "profile": {
+    "title": "Profile",
+    "account": "Account",
+    "creditBalance": "Credit Balance",
+    "totalSpent": "Total Spent",
+    "searchHistory": "Search History",
+    "orderHistory": "Order History",
+    "settings": "Settings",
+    "language": "Language",
+    "logout": "Logout",
+    "accountInfo": "Account Info",
+    "registeredAt": "Registered At",
+    "lastLogin": "Last Login",
+    "deviceInfo": "Device Info"
+  },
+  "plans": {
+    "title": "Choose Plan",
+    "choosePlan": "Choose Plan",
+    "currentPlan": "Current Plan",
+    "buyNow": "Buy Now",
+    "planDetails": "Plan Details",
+    "credits": "Credits",
+    "price": "Price",
+    "popular": "Popular",
+    "recommended": "Recommended",
+    "advanced": "Advanced",
+    "super": "Super",
+    "ultimate": "Ultimate",
+    "supreme": "Supreme"
+  },
+  "payment": {
+    "title": "Payment",
+    "orderInfo": "Order Information",
+    "orderNo": "Order No.",
+    "planName": "Plan Name",
+    "amount": "Amount",
+    "paymentMethod": "Payment Method",
+    "selectChain": "Select Chain",
+    "trc20": "TRC20 (USDT)",
+    "bsc": "BSC (USDT)",
+    "erc20": "ERC20 (USDT)",
+    "paymentAddress": "Payment Address",
+    "scanQrCode": "Scan QR Code to Pay",
+    "copyAddress": "Copy Address",
+    "addressCopied": "Address Copied",
+    "paymentStatus": "Payment Status",
+    "pending": "Pending",
+    "confirming": "Confirming",
+    "completed": "Completed",
+    "failed": "Failed",
+    "expired": "Expired",
+    "timeRemaining": "Time Remaining",
+    "checkStatus": "Check Payment Status"
+  },
+  "orders": {
+    "title": "Order History",
+    "orderNo": "Order No.",
+    "plan": "Plan",
+    "amount": "Amount",
+    "status": "Status",
+    "createTime": "Created",
+    "payTime": "Paid",
+    "noOrders": "No orders yet"
+  },
+  "reviews": {
+    "verified": "Verified Purchase",
+    "source": {
+      "demo": "Demo",
+      "beta": "Beta",
+      "real": "Real"
+    }
+  },
+  "errors": {
+    "networkError": "Network error, please check connection",
+    "serverError": "Server error, please try again later",
+    "authError": "Authentication failed, please login again",
+    "uploadError": "Upload failed, please retry",
+    "paymentError": "Payment processing failed",
+    "unknownError": "Unknown error"
+  },
+  "success": {
+    "uploadSuccess": "Upload successful",
+    "paymentSuccess": "Payment successful",
+    "orderCreated": "Order created successfully",
+    "profileUpdated": "Profile updated successfully"
+  },
+  "languages": {
+    "zh-CN": "简体中文",
+    "en-US": "English",
+    "es-ES": "Español",
+    "ja-JP": "日本語",
+    "ko-KR": "한국어",
+    "pt-PT": "Português"
+  },
+  "overlay": {
+    "generalTitle": "AI is performing a deep search…",
+    "adv": { "title": "Basic engine searching…" },
+    "sup": { "title": "Advanced multi-channel search…" },
+    "ult": { "title": "Ultimate intelligent re-ranking…" },
+    "supr": { "title": "Premium fast-lane search…" },
+    "steps": {
+      "parseImg": "Parsing image…",
+      "recallStd": "Standard recall…",
+      "filterCoarse": "Coarse filtering…",
+      "genPreview": "Generating preview…",
+      "multichannel": "Multi-channel recall…",
+      "multimodal": "Multimodal fusion…",
+      "boostRelevance": "Boosting relevance…",
+      "deepScan": "Deep cross-library scan…",
+      "rerank": "Model re-ranking…",
+      "simFilter": "Similarity filtering…",
+      "qualityAssess": "Quality assessment…",
+      "fastLane": "Fast-lane access…",
+      "humanReview": "Human-in-the-loop review…",
+      "highConfBackcheck": "High-confidence backcheck…",
+      "resultMerge": "Merging results…",
+      "parseUpload": "Parsing upload…",
+      "extractSemantic": "Extracting semantics…",
+      "vectorRecall": "Vector recall (1B+ index)…"
+    },
+    "eta": "About {{seconds}}s remaining, please don't close the page"
+  },
+  "chains": {
+    "trc20": { "desc": "Low fee, recommended" },
+    "bsc": { "desc": "Fast confirmation" },
+    "erc20": { "desc": "Most secure" }
+  },
+  "badge": {
+    "demo": "Demo",
+    "beta": "Beta",
+    "real": "Real",
+    "unknown": "Unknown"
+  },
+  "reviews": {
+    "title": "Real User Reviews",
+    "subtitle": "See what other users say",
+    "verified": "Verified"
+  },
+  "toast": {
+    "serviceUnavailable": "Service unavailable, please try again later",
+    "uploadFirst": "Please upload an image first",
+    "openingPayment": "Opening payment…",
+    "orderCreateFailed": "Failed to create order, please retry",
+    "initializing": "Initializing, please try again later",
+    "choosePlan": "Please choose a plan to start",
+    "chooseImage": "Please choose an image file",
+    "fileTooLarge": "File size must be under 10MB",
+    "uploadSuccess": "Image uploaded successfully",
+    "imageReadFailed": "Failed to read image, please retry",
+    "uploadFailed": "Upload failed, please retry",
+    "alreadyTopPlan": "You are already on the top plan",
+    "switchingNetwork": "Switching payment network...",
+    "switchFailed": "Switch failed, please retry",
+    "userLoading": "Loading user info, please retry",
+    "nextPlanFailed": "Failed to enter next plan, please retry",
+    "orderExpired": "Order expired, please create a new one",
+    "paymentNotDetected": "Payment not detected yet, please confirm transfer",
+    "checkPaymentFailed": "Failed to check payment status",
+    "noResult": "No result found. Try a clearer image or contact support",
+    "searchFailed": "Search failed, please retry or contact support",
+    "processingPayment": "Processing payment...",
+    "paymentFailed": "Payment failed, please retry",
+    "imageDeleted": "Image deleted",
+    "addressCopied": "Address copied"
+  },
+  "common": {
+    "copyAddress": "Copy Address"
+  }
+}

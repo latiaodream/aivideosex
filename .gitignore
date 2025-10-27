@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Uploads
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Process files
+*.pid
+backend-dev.log
+frontend-dev.log
+userapp-dev.log
+
+# Prisma
+backend/prisma/migrations/
+
+# Test files
+test-*.html
+cookies.txt
+
+# Temporary files
+*.tmp
+*.temp
+
