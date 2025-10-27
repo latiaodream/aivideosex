@@ -380,7 +380,7 @@ export default function SearchApp() {
     try {
       const lang = currentLanguage
       const bannersData = await bannerAPI.getPublicBanners(lang)
-      const localized = filterByLanguage(bannersData, lang)
+      const localized = filterByLanguageFallback(bannersData, lang)
       console.log('获取到轮播图数据:', localized)
       console.log('轮播图数量:', localized?.length || 0)
       console.log('当前轮播图状态:', banners)
@@ -459,7 +459,7 @@ export default function SearchApp() {
 
       // 4. 获取评价数据（按当前语言从服务端筛选，并在前端再次过滤兜底）
       const reviewsData = await reviewAPI.getPublicReviews(currentLanguage)
-      const localizedReviews = filterByLanguage(reviewsData, currentLanguage)
+      const localizedReviews = filterByLanguageStrict(reviewsData, currentLanguage)
       setReviews(localizedReviews)
       console.log('评价获取成功:', localizedReviews)
 
@@ -923,20 +923,10 @@ export default function SearchApp() {
     return textBlocks.find(block => block.key === key)
   }
 
-  // 生成付款 URI（用于二维码和复制），尽量带上金额
+  // 生成付款 URI（用于二维码和复制）- 只返回钱包地址，不包含金额和合约
   const getPaymentUri = (chain, toAddress, amount) => {
-    const amt = Number(amount)
-    if (!toAddress) return ''
-    if ((chain || '').toUpperCase() === 'BSC' || (chain || '').toUpperCase() === 'BEP20') {
-      // EIP-681 token transfer on BSC (chainId 56), USDT contract 18 decimals
-      const usdtBsc = '0x55d398326f99059fF775485246999027B3197955'
-      const wei = BigInt(Math.round(amt * 1e18)).toString()
-      return `ethereum:${usdtBsc}@56/transfer?address=${toAddress}&uint256=${wei}`
-    }
-    // TRON TRC20 USDT (contract base58)
-    const usdtTron = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
-    // Many wallets accept tron:<to>?amount=...&token=TRC20&contract=...
-    return `tron:${toAddress}?amount=${amt}&token=TRC20&contract=${usdtTron}`
+    // 直接返回钱包地址，兼容性最好，所有钱包都能识别
+    return toAddress || ''
   }
 
   // 渲染星级
