@@ -23,14 +23,27 @@ const { notifyPayment } = require('../utils/notify');
 // 密钥轮换索引（全局变量）
 let tronApiKeyIndex = 0;
 
+async function getTronApiKeys(prisma) {
+  // 读取所有 TRONGRID_API_KEY_* 密钥
+  const keys = [];
+
+  // 主密钥
+  const mainKey = await getSetting(prisma, 'TRONGRID_API_KEY');
+  if (mainKey) keys.push(mainKey);
+
+  // 备用密钥（支持 _2, _3, _4, _5...）
+  for (let i = 2; i <= 10; i++) {
+    const key = await getSetting(prisma, `TRONGRID_API_KEY_${i}`);
+    if (key) keys.push(key);
+  }
+
+  // 过滤掉空字符串
+  return keys.filter(k => k && k.length > 0);
+}
+
 async function processTronAddress(prisma, addr) {
   try {
-    // 优先使用 TRONGRID_API_KEY（已验证有效）
-    const key1 = await getSetting(prisma, 'TRONGRID_API_KEY');
-    const key2 = await getSetting(prisma, 'TRON_PRO_API_KEY');
-
-    // 只使用非空的密钥
-    const apiKeys = [key1, key2].filter(k => k && k.length > 0);
+    const apiKeys = await getTronApiKeys(prisma);
 
     if (apiKeys.length === 0) {
       console.error('[tron-watcher] No API keys configured');
