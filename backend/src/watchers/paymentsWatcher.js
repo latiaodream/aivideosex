@@ -22,22 +22,40 @@ const { notifyPayment } = require('../utils/notify');
 
 async function processTronAddress(prisma, addr) {
   try {
-    const url = `https://apilist.tronscanapi.com/api/token_trc20/transfers?toAddress=${addr}&contractAddress=${TRON_USDT_CONTRACT}&limit=20&start=0`;
-    const res = await fetch(url);
-    if (!res.ok) return;
+    // 使用 TronGrid API 而不是 TronScan（避免 429 限流）
+    const apiKey = await getSetting(prisma, 'TRONGRID_API_KEY') || await getSetting(prisma, 'TRON_PRO_API_KEY');
+    const url = `https://api.trongrid.io/v1/accounts/${addr}/transactions/trc20?limit=50&contract_address=${TRON_USDT_CONTRACT}`;
+
+    const headers = {};
+    if (apiKey) {
+      headers['TRON-PRO-API-KEY'] = apiKey;
+    }
+
+    const res = await fetch(url, { headers });
+    if (!res.ok) {
+      console.error(`[tron-watcher] TronGrid API error: ${res.status}`);
+      return;
+    }
+
     const data = await res.json();
-    const list = data?.token_transfers || data?.data || [];
+    const list = data?.data || [];
+
     for (const tx of list) {
-      let amount = 0;
-      if (tx.amount_str) amount = parseFloat(tx.amount_str);
-      else if (tx.quant && (tx.tokenDecimal || tx.decimals)) {
-        const dec = Number(tx.tokenDecimal || tx.decimals);
-        amount = Number(tx.quant) / Math.pow(10, dec);
-      } else if (tx.amount) amount = parseFloat(tx.amount);
+      // TronGrid 返回格式：value 是原始值（需要除以 10^6）
+      const value = tx.value || 0;
+      const decimals = 6; // USDT TRC20 使用 6 位小数
+      const amount = Number(value) / Math.pow(10, decimals);
       if (!Number.isFinite(amount)) continue;
       const amt2 = Number(amount.toFixed(2));
 
-      const order = await prisma.order.findFirst({ where: { toAddress: addr, chain: 'TRC20', status: { in: ['pending', 'seen'] }, amountDue: amt2 } });
+      const order = await prisma.order.findFirst({
+        where: {
+          toAddress: addr,
+          chain: 'TRC20',
+          status: { in: ['pending', 'seen'] },
+          amountDue: amt2
+        }
+      });
       if (!order) continue;
 
       await prisma.order.update({
@@ -45,19 +63,30 @@ async function processTronAddress(prisma, addr) {
         data: {
           status: 'credited',
           confirmations: 1,
-          txHash: tx.transaction_id || tx.hash || tx.txID || null,
-          fromAddress: tx.fromAddress || tx.from || null,
+          txHash: tx.transaction_id || null,
+          fromAddress: tx.from || null,
           amountPaid: amt2,
           paidAt: new Date()
         }
       });
+
       const plan = await prisma.plan.findUnique({ where: { id: order.planId } });
       if (plan) {
-        await prisma.user.update({ where: { id: order.userId }, data: { creditBalance: { increment: plan.creditGrant }, totalSpentUSDT: { increment: amt2 } } });
+        await prisma.user.update({
+          where: { id: order.userId },
+          data: {
+            creditBalance: { increment: plan.creditGrant },
+            totalSpentUSDT: { increment: amt2 }
+          }
+        });
       }
+
+      console.log(`[tron-watcher] Order ${order.orderNo} credited: ${amt2} USDT`);
       try { await notifyPayment(prisma, order.id) } catch (e) {}
     }
-  } catch (e) {}
+  } catch (e) {
+    console.error('[tron-watcher] Error:', e.message);
+  }
 }
 
 async function processBscAddress(prisma, addr, apiKey) {
