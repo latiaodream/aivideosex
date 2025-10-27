@@ -20,20 +20,34 @@ async function getAddressPool(prisma, chain) {
 
 const { notifyPayment } = require('../utils/notify');
 
+// 密钥轮换索引（全局变量）
+let tronApiKeyIndex = 0;
+
 async function processTronAddress(prisma, addr) {
   try {
-    // 使用 TronGrid API 而不是 TronScan（避免 429 限流）
-    const apiKey = await getSetting(prisma, 'TRONGRID_API_KEY') || await getSetting(prisma, 'TRON_PRO_API_KEY');
+    // 获取所有可用的 API 密钥并轮换使用
+    const key1 = await getSetting(prisma, 'TRONGRID_API_KEY');
+    const key2 = await getSetting(prisma, 'TRON_PRO_API_KEY');
+    const apiKeys = [key1, key2].filter(Boolean);
+
+    if (apiKeys.length === 0) {
+      console.error('[tron-watcher] No API keys configured');
+      return;
+    }
+
+    // 轮换使用密钥
+    const apiKey = apiKeys[tronApiKeyIndex % apiKeys.length];
+    tronApiKeyIndex++;
+
     const url = `https://api.trongrid.io/v1/accounts/${addr}/transactions/trc20?limit=50&contract_address=${TRON_USDT_CONTRACT}`;
 
-    const headers = {};
-    if (apiKey) {
-      headers['TRON-PRO-API-KEY'] = apiKey;
-    }
+    const headers = {
+      'TRON-PRO-API-KEY': apiKey
+    };
 
     const res = await fetch(url, { headers });
     if (!res.ok) {
-      console.error(`[tron-watcher] TronGrid API error: ${res.status}`);
+      console.error(`[tron-watcher] TronGrid API error: ${res.status} (using key ${tronApiKeyIndex % apiKeys.length + 1}/${apiKeys.length})`);
       return;
     }
 
@@ -154,9 +168,10 @@ async function pollBsc(prisma) {
 }
 
 function startPaymentWatchers(prisma) {
-  const defaultMs = 5000; // faster default 5s
+  const defaultMs = 10000; // 默认 10 秒（平衡速度和 API 限流）
   const envMs = Number(process.env.PAY_POLL_INTERVAL_MS || 0) || defaultMs;
-  const intervalMs = Math.max(2000, envMs); // don't go below 2s
+  const intervalMs = Math.max(5000, envMs); // 最低 5 秒（避免过度请求）
+  console.log(`[payment-watcher] Starting with interval: ${intervalMs}ms (${intervalMs/1000}s)`);
   setInterval(() => { pollTron(prisma); }, intervalMs);
   setInterval(() => { pollBsc(prisma); }, intervalMs);
 }
