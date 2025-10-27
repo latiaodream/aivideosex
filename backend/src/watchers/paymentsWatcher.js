@@ -25,10 +25,12 @@ let tronApiKeyIndex = 0;
 
 async function processTronAddress(prisma, addr) {
   try {
-    // 获取所有可用的 API 密钥并轮换使用
+    // 优先使用 TRONGRID_API_KEY（已验证有效）
     const key1 = await getSetting(prisma, 'TRONGRID_API_KEY');
     const key2 = await getSetting(prisma, 'TRON_PRO_API_KEY');
-    const apiKeys = [key1, key2].filter(Boolean);
+
+    // 只使用非空的密钥
+    const apiKeys = [key1, key2].filter(k => k && k.length > 0);
 
     if (apiKeys.length === 0) {
       console.error('[tron-watcher] No API keys configured');
@@ -37,6 +39,7 @@ async function processTronAddress(prisma, addr) {
 
     // 轮换使用密钥
     const apiKey = apiKeys[tronApiKeyIndex % apiKeys.length];
+    const keyIndex = tronApiKeyIndex % apiKeys.length;
     tronApiKeyIndex++;
 
     const url = `https://api.trongrid.io/v1/accounts/${addr}/transactions/trc20?limit=50&contract_address=${TRON_USDT_CONTRACT}`;
@@ -47,7 +50,8 @@ async function processTronAddress(prisma, addr) {
 
     const res = await fetch(url, { headers });
     if (!res.ok) {
-      console.error(`[tron-watcher] TronGrid API error: ${res.status} (using key ${tronApiKeyIndex % apiKeys.length + 1}/${apiKeys.length})`);
+      const errorText = await res.text().catch(() => '');
+      console.error(`[tron-watcher] TronGrid API error: ${res.status} for ${addr} (key ${keyIndex + 1}/${apiKeys.length}) - ${errorText.substring(0, 100)}`);
       return;
     }
 
